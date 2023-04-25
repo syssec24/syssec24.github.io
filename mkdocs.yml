@@ -1,7 +1,7 @@
-site_name: 浙江大学22年夏系统安全实验
-site_url: https://zjusec.gitee.io/syssec22/
-repo_url: https://gitee.com/zjusec/syssec-stu
-repo_name: zjusec/syssec-stu
+site_name: 浙江大学23年夏系统安全实验
+site_url: https://zjusec.gitee.io/syssec23/
+repo_url: https://gitee.com/zjusec/syssec23-stu
+repo_name: zjusec/syssec23-stu
 theme:
   name: material
   palette:
