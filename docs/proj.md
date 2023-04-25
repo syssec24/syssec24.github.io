@@ -8,7 +8,7 @@
 描述：从鸿蒙系统，云原生系统，AI系统，Web系统等垂直领域类中选一个类系统，收集相关成分分析论文，进行软件成分分析。
 
 里程碑：综述、系统爬取、工具实现、系统分析；  
-中期（第五周）完成：综述、系统爬取
+中期（第五周）完成：综述、系统爬取  
 期末（第八/九周）完成：工具实现、系统分析；
 
 参考文档： 
@@ -21,7 +21,7 @@
 描述：从Java、Rust、NPM、Go、Python中选择一门语言，收集相关静态分析论文，对分析工具进行复现，进而分析到整个语言生态的软件包。
 
 里程碑：综述、系统爬取、工具实现、系统分析；  
-中期（第五周）完成：综述、系统爬取
+中期（第五周）完成：综述、系统爬取  
 期末（第八/九周）完成：工具实现、系统分析；
 
 参考文档： 
@@ -35,8 +35,9 @@
 
 描述：因此我们需要分析Rust生态中的library以及面向用户的Rust应用使用跨语言调用的情况，找到真实的CVE，同时设计PoC对CVE进行利用，并给出防护思路。
 
-里程碑：综述、PoC实现、多个PoC，防护思路
-中期（第五周）完成：综述、PoC实现
+里程碑：综述、PoC实现、多个PoC，防护思路；
+
+中期（第五周）完成：综述、PoC实现  
 期末（第八/九周）完成：多个PoC，防护思路
 
 参考文档： 
@@ -45,8 +46,6 @@
 
 
 ## 2. 操作系统安全相关Project
-
-
 
 ### 2.1 基于eBPF的内核状态监控与防护 
 
@@ -119,7 +118,33 @@ Arm在2019年发布的ARMv8.5硬件规范中首次提出了MTE，它用4个比�
 4. [Memory Tagging Extension (MTE) in AArch64 Linux](https://www.kernel.org/doc/html/latest/arm64/memory-tagging-extension.html)
 5. [Color My World: Deterministic Tagging for Memory Safety](https://arxiv.org/pdf/2204.03781.pdf)
 
+## 3. 系统安全与AI交叉Project
 
-## 3. Presentation安排
+### 3.1 基于大模型的软件漏洞检测
+背景：随着ChatGPT的风靡，现在已有一些工作将其应用到安全上，取得了一些初步的成果。然而大模型和ChatGPT如何与安全结合依然需要更多研究。
+
+描述：本项目旨在鼓励同学们探索将AI与安全结合的新型方式。
+
+
+里程碑：
+1. 查阅相关资料、论文，总结现有工作如何结合AI与安全；
+2. 对现有结果进行复现；
+3. 将技术扩展到新的领域；
+4. 获得新的结果。
+
+中期（第五周）完成：1，2  
+期末（第八/九周）完成：3，4
+
+参考文档：
+
+1. Lost at C: A User Study on the Security Implications of Large Language Model Code Assistants
+2. https://medium.com/codex/chatgpt-detects-vulnerabilities-in-npm-and-python-packets-2156aeafc6d6
+
+
+
+### 3.2 基于大模型的系统设计
+
+
+## 4. Presentation安排
 
 To Be Decided
