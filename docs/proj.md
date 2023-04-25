@@ -118,8 +118,27 @@ Arm在2019年发布的ARMv8.5硬件规范中首次提出了MTE，它用4个比�
 4. [Memory Tagging Extension (MTE) in AArch64 Linux](https://www.kernel.org/doc/html/latest/arm64/memory-tagging-extension.html)
 5. [Color My World: Deterministic Tagging for Memory Safety](https://arxiv.org/pdf/2204.03781.pdf)
 
-## 3. 系统安全与AI交叉Project
+### 2.4 基于CodeQL的MacOS数据流分析
 
+背景：CodeQL是一个静态分析引擎，其将代码转化成数据库的形式供研究人员进行查询。macOS于2000年由苹果公司发行，macOS系统采用混合内核架构，内核由macOS核心内核 (X is Not Unix，XNU) 和内核扩展 (Kernel Extension) 两部分构成。近年来，一部分研究人员使用CodeQL对XNU进行数据流分析，找到了不少漏洞。
+
+描述：本项目通过了解CodeQL与XNU的基本知识，仿照已有研究结果进一步编写查询代码尝试对XNU进行数据流分析，从而寻找潜在的漏洞。
+
+里程碑：
+1. 阅读参考文档并搜集更多相关资料，总结CodeQL与现有通过CodeQL挖掘XNU漏洞工作的优缺点（综述）；
+2. 构造 整数溢出/UAF/OOB (视难度三选二或者三选一) 的漏洞查询语句（实现）。
+
+中期（第五周）完成：综述
+
+期末（第八/九周）完成：实现
+
+参考文档：
+
+1. MUHE. [CodeQL XNU From 0 to 1](https://o0xmuhe.github.io/2021/02/15/CodeQL-XNU-From-0-to-1/). 2021.
+2. Kevin Backhouse. Apple's XNU Kernel: Finding a memory exposure vulnerability with CodeQL (CVE-2017-13782). Github Securitylab, 2017.
+3. Arsenii Kostomin. How to find multiple memory disclosures in XNU using CodeQL. ZER0CON 2023.
+
+## 3. 系统安全与AI交叉Project
 ### 3.1 基于大模型的软件漏洞检测
 背景：随着ChatGPT的风靡，现在已有一些工作将其应用到安全上，取得了一些初步的成果。然而大模型和ChatGPT如何与安全结合依然需要更多研究。
 
