@@ -238,21 +238,6 @@
 
   
   
-  
-    <li class="md-nav__item">
-      <a href="../lab1.md" class="md-nav__link">
-        Lab 1
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
     
   
   
@@ -351,14 +336,48 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#24-codeqlmacos" class="md-nav__link">
+    2.4 基于CodeQL的MacOS数据流分析
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-presentation" class="md-nav__link">
-    3. Presentation安排
+  <a href="#3-aiproject" class="md-nav__link">
+    3. 系统安全与AI交叉Project
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 系统安全与AI交叉Project">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    3.1 基于大模型的软件漏洞检测
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    3.2 基于大模型的系统设计
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-presentation" class="md-nav__link">
+    4. Presentation安排
   </a>
   
 </li>
@@ -460,14 +479,48 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#24-codeqlmacos" class="md-nav__link">
+    2.4 基于CodeQL的MacOS数据流分析
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-presentation" class="md-nav__link">
-    3. Presentation安排
+  <a href="#3-aiproject" class="md-nav__link">
+    3. 系统安全与AI交叉Project
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 系统安全与AI交叉Project">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    3.1 基于大模型的软件漏洞检测
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    3.2 基于大模型的系统设计
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-presentation" class="md-nav__link">
+    4. Presentation安排
   </a>
   
 </li>
@@ -493,7 +546,7 @@
 <p>背景：当前复杂软件系统多均依赖第三方组件构建其功能，形成软件供应链。而这些第三方组件会存在漏洞，引入一系列的安全问题。针对垂直领域的软件系统进行软件成分分析是当前的一个研究热点。</p>
 <p>描述：从鸿蒙系统，云原生系统，AI系统，Web系统等垂直领域类中选一个类系统，收集相关成分分析论文，进行软件成分分析。</p>
 <p>里程碑：综述、系统爬取、工具实现、系统分析；<br />
-中期（第五周）完成：综述、系统爬取
+中期（第五周）完成：综述、系统爬取<br />
 期末（第八/九周）完成：工具实现、系统分析；</p>
 <p>参考文档： </p>
 <ol>
@@ -503,7 +556,7 @@
 <p>背景：当前软件系统功能日益复杂，代码量大，通过人工遍历所有代码已不可行。因此研究人员提出静态技术对代码进行分析，无需运行代码，具有可扩展性强，效率高等特点。</p>
 <p>描述：从Java、Rust、NPM、Go、Python中选择一门语言，收集相关静态分析论文，对分析工具进行复现，进而分析到整个语言生态的软件包。</p>
 <p>里程碑：综述、系统爬取、工具实现、系统分析；<br />
-中期（第五周）完成：综述、系统爬取
+中期（第五周）完成：综述、系统爬取<br />
 期末（第八/九周）完成：工具实现、系统分析；</p>
 <p>参考文档： </p>
 <ol>
@@ -513,8 +566,8 @@
 <h3 id="13-rustc">1.3 Rust/C跨语言调用分析</h3>
 <p>背景：Rust通常用于比较底层的项目，与C的语言规范相近，因此开发者为避免重写代码会重用C代码，因此会使用跨语言调用机制。如果C语言部分存在问题，或者跨语言接口抽象存在问题，都是难以修复或者滞后修复的。</p>
 <p>描述：因此我们需要分析Rust生态中的library以及面向用户的Rust应用使用跨语言调用的情况，找到真实的CVE，同时设计PoC对CVE进行利用，并给出防护思路。</p>
-<p>里程碑：综述、PoC实现、多个PoC，防护思路
-中期（第五周）完成：综述、PoC实现
+<p>里程碑：综述、PoC实现、多个PoC，防护思路；</p>
+<p>中期（第五周）完成：综述、PoC实现<br />
 期末（第八/九周）完成：多个PoC，防护思路</p>
 <p>参考文档： 
 1. Cross-Language Attacks, NDSS 22</p>
@@ -572,7 +625,38 @@
 <li><a href="https://www.kernel.org/doc/html/latest/arm64/memory-tagging-extension.html">Memory Tagging Extension (MTE) in AArch64 Linux</a></li>
 <li><a href="https://arxiv.org/pdf/2204.03781.pdf">Color My World: Deterministic Tagging for Memory Safety</a></li>
 </ol>
-<h2 id="3-presentation">3. Presentation安排</h2>
+<h3 id="24-codeqlmacos">2.4 基于CodeQL的MacOS数据流分析</h3>
+<p>背景：CodeQL是一个静态分析引擎，其将代码转化成数据库的形式供研究人员进行查询。macOS于2000年由苹果公司发行，macOS系统采用混合内核架构，内核由macOS核心内核 (X is Not Unix，XNU) 和内核扩展 (Kernel Extension) 两部分构成。近年来，一部分研究人员使用CodeQL对XNU进行数据流分析，找到了不少漏洞。</p>
+<p>描述：本项目通过了解CodeQL与XNU的基本知识，仿照已有研究结果进一步编写查询代码尝试对XNU进行数据流分析，从而寻找潜在的漏洞。</p>
+<p>里程碑：
+1. 阅读参考文档并搜集更多相关资料，总结CodeQL与现有通过CodeQL挖掘XNU漏洞工作的优缺点（综述）；
+2. 构造 整数溢出/UAF/OOB (视难度三选二或者三选一) 的漏洞查询语句（实现）。</p>
+<p>中期（第五周）完成：综述</p>
+<p>期末（第八/九周）完成：实现</p>
+<p>参考文档：</p>
+<ol>
+<li>MUHE. <a href="https://o0xmuhe.github.io/2021/02/15/CodeQL-XNU-From-0-to-1/">CodeQL XNU From 0 to 1</a>. 2021.</li>
+<li>Kevin Backhouse. Apple's XNU Kernel: Finding a memory exposure vulnerability with CodeQL (CVE-2017-13782). Github Securitylab, 2017.</li>
+<li>Arsenii Kostomin. How to find multiple memory disclosures in XNU using CodeQL. ZER0CON 2023.</li>
+</ol>
+<h2 id="3-aiproject">3. 系统安全与AI交叉Project</h2>
+<h3 id="31">3.1 基于大模型的软件漏洞检测</h3>
+<p>背景：随着ChatGPT的风靡，现在已有一些工作将其应用到安全上，取得了一些初步的成果。然而大模型和ChatGPT如何与安全结合依然需要更多研究。</p>
+<p>描述：本项目旨在鼓励同学们探索将AI与安全结合的新型方式。</p>
+<p>里程碑：
+1. 查阅相关资料、论文，总结现有工作如何结合AI与安全；
+2. 对现有结果进行复现；
+3. 将技术扩展到新的领域；
+4. 获得新的结果。</p>
+<p>中期（第五周）完成：1，2<br />
+期末（第八/九周）完成：3，4</p>
+<p>参考文档：</p>
+<ol>
+<li>Lost at C: A User Study on the Security Implications of Large Language Model Code Assistants</li>
+<li>https://medium.com/codex/chatgpt-detects-vulnerabilities-in-npm-and-python-packets-2156aeafc6d6</li>
+</ol>
+<h3 id="32">3.2 基于大模型的系统设计</h3>
+<h2 id="4-presentation">4. Presentation安排</h2>
 <p>To Be Decided</p>
 
 
