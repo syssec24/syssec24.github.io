@@ -47,7 +47,7 @@
 
 ## 2. 操作系统安全相关Project
 
-### 2.1 基于eBPF的内核状态感知
+### 2.1 基于eBPF的内核状态监控与防护 
 
 背景：Extended Berkeley Packet Filter(eBPF)是一个Linux子系统，它允许在不修改内核的前提下，在内核中动态加载并安全地执行不受信任的用户自定义扩展。尽管允许用户在内核中执行任意代码一直被认为是不明智的，但BPF通过一系列的机制(verifier)确保了安全性。如今eBPF在系统跟踪、观测、性能调优、网络和安全等领域发挥重要的角色，孵化了很多知名项目，如cilium，sysdig falco等，有人甚至提出eBPF可能会促进微内核化的进程，并称其为超能力。eBPF提供的针对内核与用户进程的高可观测性对复杂环境(如云原生环境)的性能、安全等的监视与防护具有重要意义，而其在安全领域的潜在恶意利用，也引起了广泛的关注。
 
@@ -77,7 +77,7 @@
 ### 2.2 基于eBPF的内核rootkit
 背景：同上
 
-描述：利用BPF实现rootkit，可以执行任意命令或向攻击方发起反向连接
+描述：利用BPF实现rootkit，对cron无感知地插入后门，可以执行任意命令或向攻击方发起反向连接，并设计利用BPF的，对BPF恶意利用的检测系统框架(基于规则的面向BPF syscall的检测，如非预期用户挂载了敏感类型探针)
 
 里程碑：
 
@@ -139,6 +139,7 @@ Arm在2019年发布的ARMv8.5硬件规范中首次提出了MTE，它用4个比�
 1. MUHE. [CodeQL XNU From 0 to 1](https://o0xmuhe.github.io/2021/02/15/CodeQL-XNU-From-0-to-1/). 2021.
 2. Kevin Backhouse. Apple's XNU Kernel: Finding a memory exposure vulnerability with CodeQL (CVE-2017-13782). Github Securitylab, 2017.
 3. Arsenii Kostomin. How to find multiple memory disclosures in XNU using CodeQL. ZER0CON 2023.
+4. Kevin Backhouse. Kernel crash caused by out-of-bounds write in Apple's ICMP packet-handling code (CVE-2018-4407). Github Securitylab, 2018.
 
 ## 3. 系统安全与AI交叉Project
 ### 3.1 基于大模型的软件漏洞检测
