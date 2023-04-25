@@ -317,7 +317,7 @@
         
           <li class="md-nav__item">
   <a href="#21-ebpf" class="md-nav__link">
-    2.1 基于eBPF的内核状态感知
+    2.1 基于eBPF的内核状态监控与防护
   </a>
   
 </li>
@@ -460,7 +460,7 @@
         
           <li class="md-nav__item">
   <a href="#21-ebpf" class="md-nav__link">
-    2.1 基于eBPF的内核状态感知
+    2.1 基于eBPF的内核状态监控与防护
   </a>
   
 </li>
@@ -572,7 +572,7 @@
 <p>参考文档： 
 1. Cross-Language Attacks, NDSS 22</p>
 <h2 id="2-project">2. 操作系统安全相关Project</h2>
-<h3 id="21-ebpf">2.1 基于eBPF的内核状态感知</h3>
+<h3 id="21-ebpf">2.1 基于eBPF的内核状态监控与防护</h3>
 <p>背景：Extended Berkeley Packet Filter(eBPF)是一个Linux子系统，它允许在不修改内核的前提下，在内核中动态加载并安全地执行不受信任的用户自定义扩展。尽管允许用户在内核中执行任意代码一直被认为是不明智的，但BPF通过一系列的机制(verifier)确保了安全性。如今eBPF在系统跟踪、观测、性能调优、网络和安全等领域发挥重要的角色，孵化了很多知名项目，如cilium，sysdig falco等，有人甚至提出eBPF可能会促进微内核化的进程，并称其为超能力。eBPF提供的针对内核与用户进程的高可观测性对复杂环境(如云原生环境)的性能、安全等的监视与防护具有重要意义，而其在安全领域的潜在恶意利用，也引起了广泛的关注。</p>
 <p>描述：本项目通过层层递进的方式逐渐深入BPF的内核观测与保护，涵盖了eBPF的各个方面，包括：观测，防护，自定义内核处理逻辑，配套工具使用和前沿探索性质的研究。</p>
 <p>里程碑：</p>
@@ -597,7 +597,7 @@
 </ol>
 <h3 id="22-ebpfrootkit">2.2 基于eBPF的内核rootkit</h3>
 <p>背景：同上</p>
-<p>描述：利用BPF实现rootkit，可以执行任意命令或向攻击方发起反向连接</p>
+<p>描述：利用BPF实现rootkit，对cron无感知地插入后门，可以执行任意命令或向攻击方发起反向连接，并设计利用BPF的，对BPF恶意利用的检测系统框架(基于规则的面向BPF syscall的检测，如非预期用户挂载了敏感类型探针)</p>
 <p>里程碑：</p>
 <ol>
 <li>理解内核中BPF的作用原理，收集2种已有的eBPF rootkit，阐述其原理（综述）。</li>
@@ -632,6 +632,7 @@
 <p>里程碑：
 1. 阅读参考文档并搜集更多相关资料，总结CodeQL与现有通过CodeQL挖掘XNU漏洞工作的优缺点（综述）；
 2. 构造 整数溢出/UAF/OOB (视难度三选二或者三选一) 的漏洞查询语句（实现）。</p>
+<p><strong>漏洞查询语句通常只有几十行代码</strong></p>
 <p>中期（第五周）完成：综述</p>
 <p>期末（第八/九周）完成：实现</p>
 <p>参考文档：</p>
@@ -639,6 +640,7 @@
 <li>MUHE. <a href="https://o0xmuhe.github.io/2021/02/15/CodeQL-XNU-From-0-to-1/">CodeQL XNU From 0 to 1</a>. 2021.</li>
 <li>Kevin Backhouse. Apple's XNU Kernel: Finding a memory exposure vulnerability with CodeQL (CVE-2017-13782). Github Securitylab, 2017.</li>
 <li>Arsenii Kostomin. How to find multiple memory disclosures in XNU using CodeQL. ZER0CON 2023.</li>
+<li>Kevin Backhouse. Kernel crash caused by out-of-bounds write in Apple's ICMP packet-handling code (CVE-2018-4407). Github Securitylab, 2018.</li>
 </ol>
 <h2 id="3-aiproject">3. 系统安全与AI交叉Project</h2>
 <h3 id="31">3.1 基于大模型的软件漏洞检测</h3>
