@@ -1,4 +1,5 @@
 .vscode/
+.metals/
 .DS_Store
 site/
 .idea/
