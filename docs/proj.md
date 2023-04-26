@@ -174,7 +174,7 @@ Arm在2019年发布的ARMv8.5硬件规范中首次提出了MTE，它用4个比�
 参考文档：
 
 1. WINNIE: Fuzzing Windows Applications with Harness Synthesis and Fast Cloning. NDSS 2021.
-2. [American fuzzy lop: A security-oriented fuzzer.](https: //github.com/google/AFL)
+2. [American fuzzy lop: A security-oriented fuzzer](https: //github.com/google/AFL)
 3. [微信二维码崩溃后续 转发一个靠谱的分析](https://mp.weixin.qq.com/s/0Q_jLiZqyaULchFIwTR3bg)
 4. [idhyt/AndroidFridaFuzz: android app native so fuzz. efficiently run in a real machine with frida environment. (github.com)](https://github.com/idhyt/AndroidFridaFuzz)
 
