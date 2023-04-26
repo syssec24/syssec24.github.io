@@ -614,12 +614,17 @@
 <p>实验过程中可能需要使用 python 命令来运行一个 http server，需要在本地配置 python 环境</p>
 <p>python 环境的安装和配置请同学们自行 Google</p>
 <h3 id="37-jdk-maven">3.7 JDK 和 Maven</h3>
-<p>JDK 配置
-+ <a href="https://www.oracle.com/java/technologies/downloads/#java8-windows">Windows jdk1.8下载地址</a> 
-+ 注意下载对应操作系统的 jdk, 并将其添加到环境变量</p>
+<p>注意下载对应操作系统的 JDK, 并将其添加到环境变量。JDK 和 Maven 的配置：</p>
+<ul>
+<li>
+<p><a href="https://www.oracle.com/java/technologies/downloads/#java8-windows">Windows jdk1.8下载地址</a> </p>
+</li>
+<li>
 <p><a href="https://www.runoob.com/maven/maven-setup.html">Maven 的安装配置方法</a></p>
+</li>
+</ul>
 <h2 id="4">4.实验步骤</h2>
-<p>本实验提供 Log4j2Vul 和 White-Jotter 两个文件夹，<a href="https://gitee.com/zjusec/syssec23.git">项目下载地址</a></p>
+<p>本实验提供 Log4j2Vul 和 White-Jotter 两个文件夹，<a href="https://gitee.com/zjusec/syssec23-stu.git">项目下载地址</a></p>
 <h3 id="41-log4j-2">4.1 本地触发 Log4j 2 漏洞，弹出计算器</h3>
 <p>实验 1 的目录结构如下：</p>
 <p>Log4j2Vul</p>
@@ -657,7 +662,7 @@
 <li>打开 IDEA，导入所给的 Log4j2Vul 项目中的Log4j2Ldap项目</li>
 </ul>
 <blockquote>
-<p>注意此处应导入Log4j2Ldap项目不要导入整个Log4j2Vul</p>
+<p>注意此处应导入 Log4j2Ldap 项目，不要导入整个Log4j2Vul</p>
 </blockquote>
 <ul>
 <li>此项目引入的为2.12.1版本</li>
@@ -688,7 +693,7 @@
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>java -cp marshalsec-0.0.3-SNAPSHOT-all.jar marshalsec.jndi.LDAPRefServer &quot;http://127.0.0.1:8100/#Exploit&quot;
 </code></pre></div></td></tr></table></div>
 <blockquote>
-<p>如果这一步报错提示端口被占用，可通过 <code>netstat -ano | findstr "port_number"</code> 查找占用进程，如果不重要可以直接 kill。如果查找不到占用的进程，参考<a href="https://blog.csdn.net/m0_47696151/article/details/117785566">这篇博客</a>。</p>
+<p>如果这一步报错提示端口被占用，可通过 <code>netstat -ano | findstr "port_number"</code> 查找占用进程，不重要的进程可以直接 kill。如果查找不到占用的进程，参考<a href="https://blog.csdn.net/m0_47696151/article/details/117785566">这篇博客</a>。</p>
 </blockquote>
 <ul>
 <li>完成打开本地计算器的攻击脚本的编写</li>
@@ -718,8 +723,8 @@
 <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <blockquote>
-<p>提示1：可以使用 Java 的 Runtime.getRuntime().exec() 方法，该方法用于调用外部可执行程序或系统命令。
-提示2：Windows 系统打开计算器的命令是 <code>calc.exe</code></p>
+<p>提示1：可以使用 Java 的 Runtime.getRuntime().exec() 方法，该方法用于调用外部可执行程序或系统命令。</p>
+<p>提示2：Windows 系统打开计算器的命令是 <code>calc.exe</code></p>
 </blockquote>
 <ul>
 <li>将攻击脚本编译为 .class 文件</li>
