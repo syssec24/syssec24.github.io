@@ -82,15 +82,15 @@ python 环境的安装和配置请同学们自行 Google
 
 ### 3.7 JDK 和 Maven
 
-JDK 配置
-+ [Windows jdk1.8下载地址](https://www.oracle.com/java/technologies/downloads/#java8-windows) 
-+ 注意下载对应操作系统的 jdk, 并将其添加到环境变量
+注意下载对应操作系统的 JDK, 并将其添加到环境变量。JDK 和 Maven 的配置：
 
-[Maven 的安装配置方法](https://www.runoob.com/maven/maven-setup.html)
++ [Windows jdk1.8下载地址](https://www.oracle.com/java/technologies/downloads/#java8-windows) 
+
++ [Maven 的安装配置方法](https://www.runoob.com/maven/maven-setup.html)
 
 ## 4.实验步骤
 
-本实验提供 Log4j2Vul 和 White-Jotter 两个文件夹，[项目下载地址](https://gitee.com/zjusec/syssec23.git)
+本实验提供 Log4j2Vul 和 White-Jotter 两个文件夹，[项目下载地址](https://gitee.com/zjusec/syssec23-stu.git)
 
 ### 4.1 本地触发 Log4j 2 漏洞，弹出计算器
 
@@ -122,7 +122,7 @@ Log4j2Vul
 
 + 打开 IDEA，导入所给的 Log4j2Vul 项目中的Log4j2Ldap项目
 
-  > 注意此处应导入Log4j2Ldap项目不要导入整个Log4j2Vul
+  > 注意此处应导入 Log4j2Ldap 项目，不要导入整个Log4j2Vul
 
 + 此项目引入的为2.12.1版本
 
@@ -144,7 +144,7 @@ Log4j2Vul
 ```
 java -cp marshalsec-0.0.3-SNAPSHOT-all.jar marshalsec.jndi.LDAPRefServer "http://127.0.0.1:8100/#Exploit"
 ```
-> 如果这一步报错提示端口被占用，可通过 `netstat -ano | findstr "port_number"` 查找占用进程，如果不重要可以直接 kill。如果查找不到占用的进程，参考[这篇博客](https://blog.csdn.net/m0_47696151/article/details/117785566)。
+> 如果这一步报错提示端口被占用，可通过 `netstat -ano | findstr "port_number"` 查找占用进程，不重要的进程可以直接 kill。如果查找不到占用的进程，参考[这篇博客](https://blog.csdn.net/m0_47696151/article/details/117785566)。
 
 + 完成打开本地计算器的攻击脚本的编写
 
@@ -164,6 +164,7 @@ public class Exploit {
 ```
 
 > 提示1：可以使用 Java 的 Runtime.getRuntime().exec() 方法，该方法用于调用外部可执行程序或系统命令。
+
 > 提示2：Windows 系统打开计算器的命令是 `calc.exe`
 
 + 将攻击脚本编译为 .class 文件
