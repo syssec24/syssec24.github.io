@@ -143,6 +143,40 @@ Arm在2019年发布的ARMv8.5硬件规范中首次提出了MTE，它用4个比�
 3. Arsenii Kostomin. How to find multiple memory disclosures in XNU using CodeQL. ZER0CON 2023.
 4. Kevin Backhouse. Kernel crash caused by out-of-bounds write in Apple's ICMP packet-handling code (CVE-2018-4407). Github Securitylab, 2018.
 
+### 2.5 针对闭源软件的模糊测试
+
+**背景**：模糊测试 (Fuzzing) 技术是一种自动化软件测试方法，通过向目标输入非法、畸形或非预期的输入，以发现软件缺陷和漏洞。近年来，随着针对开源软件Fuzzing的深入，针对**闭源**二进制软件也发展出较为成熟的灰盒Fuzzing技术，比如针对Windows的[1]。为提高Fuzzing效率，现代Fuzzing工具常引入反馈机制，根据程序的运行状态，评价测试输入的质量或调整输入的变异策略。代表性Fuzzer如AFL[2] 提出使用程序代码覆盖率作为反馈信号。代码覆盖率指针对一次输入，对PC寄存器（x86/x64的EIP/RIP）进行采样。通过代码覆盖率能分析程序的运行情况（针对当前的测试输入，能够获得程序走了多少代码）。
+
+**描述**：
+
+一、主流的Fuzzing工作最为重要就是做到代码覆盖率的采集，但想要做到这件事情还需要考虑到性能需求、实现难度等等。比如针对三星Android 10的闭源库，通过复现已有工作（编写loader程序动态链接闭源库来调用闭源库中的函数，而不是在安卓模拟器中进行fuzzing，以提升fuzzing的速度），7小时4核并行能挖到12个导致crash的潜在漏洞。
+
+![三星闭源库fuzzing]()
+
+二、针对近期Android、IOS版微信在扫描如下二维码（或从聊天框打开该图片）就会崩溃的情况，助教改写了之前的loader使其调用微信的扫码模块，以便对微信的扫码模块进行Fuzzing。即便后续报道[3]出微信的二维码扫描代码是开源的，不需要使用灰盒Fuzzing方法，但使用灰盒Fuzzing的方法可以对几乎任意的二进制进行测试，所以这也是有意义的。比如做完微信的，使用同一套方法可以去测试美团、支付宝、淘宝等等任意拥有二维码扫描功能的App。同时，不只是二维码扫描，只要是涉及到图片、音频、视频等编码解码 (codec) 的闭源库都可以用同一套方法进行Fuzzing。
+
+![可以导致微信崩溃的二维码]()
+
+但和三星闭源库fuzzing不同，这里使用loader调用微信的闭源库存在全局变量初始化的问题（下图`qword_51A3A8`没有初始化），如果直接调用微信扫描二维码的接口`ScanImage`便会导致程序出现正常运行时不应该存在的崩溃（下图crash的汇编代码中`x0`便是IDA中的），导致无法进行正常的fuzzing。
+
+![不能正常fuzz微信扫码库的原因]()
+
+里程碑（**2、3任选其一**）：
+
+1. 阅读参考文档并搜集更多相关资料，总结对现有针对Windows、Android闭源库、MacOS等的Fuzzing工作（综述）；
+2. （**可选**）复现一个近期针对 Windows 或 Android闭源库 或 MacOS等 的Fuzzing的工作（复现）；
+3. （**可选**）探究如何运行针对微信扫码模块的fuzzing（可以考虑的方法大致有三种: 1. 不使用loader，而使用Frida Fuzzer[4]等工具在安卓模拟器中进行fuzzing；2. 加入JVM的支持，编写Java配置程序与loader程序完成全局变量的初始化、动态链接闭源库来调用闭源库中的函数；3. 逆向微信如何做的全局变量/配置初始化，然后在loader程序调用微信二维码库进行对应的初始化）（创新）；
+
+中期（第五周）完成：1 (综述)
+期末（第八/九周）完成：2**或**3 （复现**或**创新）
+
+参考文档：
+
+1. WINNIE: Fuzzing Windows Applications with Harness Synthesis and Fast Cloning. NDSS 2021.
+2. [American fuzzy lop: A security-oriented fuzzer.](https: //github.com/google/AFL)
+3. [微信二维码崩溃后续 转发一个靠谱的分析](https://mp.weixin.qq.com/s/0Q_jLiZqyaULchFIwTR3bg)
+4. [idhyt/AndroidFridaFuzz: android app native so fuzz. efficiently run in a real machine with frida environment. (github.com)](https://github.com/idhyt/AndroidFridaFuzz)
+
 ## 3. 系统安全与AI交叉Project
 ### 3.1 基于大模型的软件漏洞检测
 背景：随着ChatGPT的风靡，现在已有一些工作将其应用到安全上，取得了一些初步的成果。然而大模型和ChatGPT如何与安全结合依然需要更多研究。
