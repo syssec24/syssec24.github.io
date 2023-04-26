@@ -667,16 +667,16 @@
 <p><img alt="不能正常fuzz微信扫码库的原因" src="../img/fuzzing-crash.png" /></p>
 <p>里程碑（<strong>2、3任选其一</strong>）：</p>
 <ol>
-<li>阅读参考文档并搜集更多相关资料，总结对现有针对Windows、Android闭源库、MacOS等的Fuzzing工作（综述）；</li>
-<li>（<strong>可选</strong>）复现一个近期针对 Windows 或 Android闭源库 或 MacOS等 的Fuzzing的工作（复现）；</li>
-<li>（<strong>可选</strong>）探究如何运行针对微信扫码模块的fuzzing（可以考虑的方法大致有三种: 1. 不使用loader，而使用Frida Fuzzer[4]等工具在安卓模拟器中进行fuzzing；2. 加入JVM的支持，编写Java配置程序与loader程序完成全局变量的初始化、动态链接闭源库来调用闭源库中的函数；3. 逆向微信如何做的全局变量/配置初始化，然后在loader程序调用微信二维码库进行对应的初始化）（创新）；</li>
+<li>阅读参考文档并搜集更多相关资料，总结现有针对Windows、Android闭源库、MacOS等的Fuzzing工作（综述）；</li>
+<li>（<strong>可选</strong>）复现一个近期对 Windows 或 Android闭源库 或 MacOS等 的Fuzzing的工作（复现）；</li>
+<li>（<strong>可选</strong>）探究如何运行微信扫码模块的fuzzing（可以考虑的方法大致有三种: 1. 不使用loader，而使用Frida Fuzzer[4]等工具在安卓模拟器中进行fuzzing；2. 加入JVM的支持，编写Java配置程序与loader程序完成全局变量的初始化、动态链接闭源库来调用闭源库中的函数；3. 逆向微信如何做的全局变量/配置初始化，然后在loader程序调用微信二维码库进行对应的初始化）（创新）；</li>
 </ol>
 <p>中期（第五周）完成：1 (综述)</p>
 <p>期末（第八/九周）完成：2<strong>或</strong>3 （复现<strong>或</strong>创新）</p>
 <p>参考文档：</p>
 <ol>
 <li>WINNIE: Fuzzing Windows Applications with Harness Synthesis and Fast Cloning. NDSS 2021.</li>
-<li><a href="https: //github.com/google/AFL">American fuzzy lop: A security-oriented fuzzer.</a></li>
+<li><a href="https://github.com/google/AFL">American fuzzy lop: A security-oriented fuzzer</a></li>
 <li><a href="https://mp.weixin.qq.com/s/0Q_jLiZqyaULchFIwTR3bg">微信二维码崩溃后续 转发一个靠谱的分析</a></li>
 <li><a href="https://github.com/idhyt/AndroidFridaFuzz">idhyt/AndroidFridaFuzz: android app native so fuzz. efficiently run in a real machine with frida environment. (github.com)</a></li>
 </ol>

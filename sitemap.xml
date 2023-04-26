@@ -6,6 +6,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://zjusec.gitee.io/syssec23-stu/lab1/</loc>
+         <lastmod>2023-04-26</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://zjusec.gitee.io/syssec23-stu/proj/</loc>
          <lastmod>2023-04-26</lastmod>
          <changefreq>daily</changefreq>
