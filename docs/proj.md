@@ -151,11 +151,11 @@ Arm在2019年发布的ARMv8.5硬件规范中首次提出了MTE，它用4个比�
 
 一、主流的Fuzzing工作最为重要就是做到代码覆盖率的采集，但想要做到这件事情还需要考虑到性能需求、实现难度等等。比如针对三星Android 10的闭源库，通过复现已有工作（编写loader程序动态链接闭源库来调用闭源库中的函数，而不是在安卓模拟器中进行fuzzing，以提升fuzzing的速度），7小时4核并行能挖到12个导致crash的潜在漏洞。
 
-![三星闭源库fuzzing](img/fuzzing-samsung.png)
+<img src=https://gitee.com/zjusec/syssec23-stu/raw/master/docs/img/fuzzing-samsung.png width=40% />
 
 二、针对近期Android、IOS版微信在扫描如下二维码（或从聊天框打开该图片）就会崩溃的情况，助教改写了之前的loader使其调用微信的扫码模块，以便对微信的扫码模块进行Fuzzing。即便后续报道[3]出微信的二维码扫描代码是开源的，不需要使用灰盒Fuzzing方法，但使用灰盒Fuzzing的方法可以对几乎任意的二进制进行测试，所以这也是有意义的。比如做完微信的，使用同一套方法可以去测试美团、支付宝、淘宝等等任意拥有二维码扫描功能的App。同时，不只是二维码扫描，只要是涉及到图片、音频、视频等编码解码 (codec) 的闭源库都可以用同一套方法进行Fuzzing。
 
-![可以导致微信崩溃的二维码](img/fuzzing-qr.png)
+<img src=https://gitee.com/zjusec/syssec23-stu/raw/master/docs/img/fuzzing-qr.png width=20% />
 
 但和三星闭源库fuzzing不同，这里使用loader调用微信的闭源库存在全局变量初始化的问题（下图`qword_51A3A8`没有初始化），如果直接调用微信扫描二维码的接口`ScanImage`便会导致程序出现正常运行时不应该存在的崩溃（下图crash的汇编代码中`x0`便是IDA中的`v7[5]`），导致无法进行正常的fuzzing。
 
