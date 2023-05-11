@@ -770,7 +770,7 @@
 </ul>
 <h2 id="3">3. 背景介绍</h2>
 <h2 id="31-arm64">3.1 ARM64 汇编</h2>
-<p>ARM64 支持 EL0-EL3 三个特权级，EL0 特权级最低，EL3 最高。一般情况下，EL1 运行 Linux 内核，EL0 运行用户态程序。</p>
+<p>ARM64 支持 EL0-EL3 四个特权级，EL0 特权级最低，EL3 最高。一般情况下，EL1 运行 Linux 内核，EL0 运行用户态程序。</p>
 <h4 id="arm64">ARM64 寄存器</h4>
 <ul>
 <li>31个通用寄存器，每个寄存器都为 64bit 大小，可以通过 x0-x30 访问，同时可以通过 w0-w30 来访问这些寄存器的低32位。其中，x29寄存器(fp)用于保存栈帧基地址，x30寄存器也叫link register（lr），用于保存返回上一个函数的返回地址。</li>
@@ -780,6 +780,7 @@
 <blockquote>
 <p>⚠️ 注意 哪些寄存器是在一个函数中可以被随意改写的，哪些是需要保存到栈上之后才能改写的</p>
 </blockquote>
+<p><img alt="armv8 reg" src="https://cataloc.gitee.io/blog/2021/06/03/Armv8%E6%9E%B6%E6%9E%84%E7%AE%80%E4%BB%8B/GPRs.png" /></p>
 <h4 id="arm64_1">ARM64 指令</h4>
 <ul>
 <li>mov 指令。将数据从一个寄存器移动到另一个寄存器，或者将一个立即数加载到寄存器。</li>
