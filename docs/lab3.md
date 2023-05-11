@@ -360,6 +360,43 @@ struct zjudev_struct
 
 同时实验提供的 ioctl 接口能够调整这个缓冲区大小如果将其调整成内核中某个数据结构的大小，当内核分配相同大小的数据结构时，便会使用这块由我们控制的缓冲区，由此我们便可以控制内核的关键数据结构，最终达到 root 权限的目的。
 
+### 5.4 struct结构介绍
+
+`tty_struct`：
+
+```c
+/* offset    |  size */  type = struct tty_struct {
+/*    0      |     4 */    int magic;
+/*    4      |     4 */    struct kref {
+/*    4      |     4 */        refcount_t refcount;
+
+                               /* total size (bytes):    4 */
+                           } kref;
+/*    8      |     8 */    struct device *dev;
+/*   16      |     8 */    struct tty_driver *driver;
+/*   24      |     8 */    const struct tty_operations *ops;
+/*   32      |     4 */    int index;
+/* XXX  4-byte hole  */
+/*   40      |    48 */    struct ld_semaphore {
+/*   40      |     8 */        atomic_long_t count;
+/*   48      |     4 */        raw_spinlock_t wait_lock;
+/*   52      |     4 */        unsigned int wait_readers;
+/*   56      |    16 */        struct list_head {
+/*   56      |     8 */            struct list_head *next;
+/*   64      |     8 */            struct list_head *prev;
+
+                                   /* total size (bytes):   16 */
+                               } read_wait;
+/*   72      |    16 */        struct list_head {
+/*   72      |     8 */            struct list_head *next;
+/*   80      |     8 */            struct list_head *prev;
+
+                                   /* total size (bytes):   16 */
+                               } write_wait; 
+...
+
+```
+
 ## 6 实验任务
 
 本次实验分为三个小任务，每个小任务难度逐层递进，实验最终要求是获取 root 权限下可读文件中的 flag，并写入自己的实验报告中提交。**本次实验可能会涉及 ASLR，为了简化实验，本次实验提供了 gdb 和 System.map 文件，可以间接绕过。**
