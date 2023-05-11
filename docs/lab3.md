@@ -392,7 +392,7 @@ struct zjudev_struct
 /*   80      |     8 */            struct list_head *prev;
 
                                    /* total size (bytes):   16 */
-                               } write_wait; 
+                               } write_wait;
 ...
 
 ```
