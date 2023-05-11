@@ -492,7 +492,7 @@ void zju_gadget3(void)
 实验内容如下：
 
 * 使用objdump反汇编开启CFI的内核镜像 `vmlinux`，获得汇编代码，**提交任意一个间接调用的汇编代码**，并详细解释CFI是如何防御JOP攻击。
-* 重新运行JOP攻击程序，查看是否CFI是否能起作用。**提交demsg中包含CFI Failure截图**。
+* 重新运行JOP攻击程序，查看是否CFI是否能起作用。**提交dmesg中包含CFI Failure截图**。
 
 ## 7. 实验提交
 
