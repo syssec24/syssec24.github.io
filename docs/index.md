@@ -20,4 +20,4 @@
 
 感谢以下各位老师和助教的辛勤付出！
 
-[申文博](https://wenboshen.org/)、周金梦、王星宇、朱若凡、屠锦江、蔡泽超、张有坤、[潘子曰](https://pan-ziyue。github.io)、李程浩、朱家迅、郭若容
+[申文博](https://wenboshen.org/)、周金梦、王星宇、朱若凡、屠锦江、[蔡泽超](https://zech4o.github.io)、张有坤、[潘子曰](https://pan-ziyue.github.io)、李程浩、朱家迅、郭若容
