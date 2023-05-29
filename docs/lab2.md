@@ -346,6 +346,8 @@ aarch64-linux-gnu-objdump --disassemble=zjubof_write vmlinux  #反汇编zjubof_w
 
 **请注意内核每次启动的 KASLR 偏移值都不同，Task 2，3的利用代码要包含Task 1 的利用代码。**
 
+> 提示：1. 在编写PoC的过程中可能会遇到加入`system("/bin/sh")`导致其余printf无法输出的问题，所以可以先注释掉`system("/bin/sh")`；2. 虚拟机中出现的`can't access tty...`，不会干扰利用。
+
 ### 5.2 Task2: 修改return address，获取 root 权限
 
 在泄露了 stack canary 和 offset 后，我们就可以利用 buffer overflow write 漏洞覆盖掉栈上的 lr 值。在Task2 中，只需要覆盖 lr 使执行流跳转到 `first_level_gadget` （请注意跳转到该函数的哪一行），该 gadget 调用 `commit_creds(prepare_kernel_cred(0))` 提权，并将栈指针调整到 `zjubof_write` 函数栈帧的底部，与正常执行时的sp保持一致，以保证能正确从 `zjubof_write` 函数返回。请同学们通过画栈的变化图以及通过 gdb 追踪栈的变化，搞清楚为什么要调整栈指针。
