@@ -143,9 +143,22 @@ void* b = kmalloc(BUF_SIZE, GFP_KERNEL);
 
 在 Linux 中 `/dev` 目录下，存在很多设备文件，其中有一个 `/dev/ptmx `设备，这个设备文件主要用于打开一对伪终端设备，本次实验利用该设备进行控制流的劫持。
 
+可能需要的头文件：
+
+```c
+#include<stdio.h> 
+#include <stdlib.h> 
+#include <string.h> 
+#include <unistd.h> 
+#include <sys/stat.h> 
+#include <sys/types.h>
+#include <fcntl.h> 
+#include <sys/ioctl.h> 
+```
+
 #### 4.3.1 /dev/ptmx 伪终端和 tty_struct 结构的利用
 
-进程打开 `/dev/ptmx` 设备可以通过手使用代码 `open("/dev/ptmx", O_RDWR | O_NOCTTY) ` 打开，当我们执行该代码时，内核会通过以下函数调用链，分配一个 `tty_struct` 结构体：
+进程打开 `/dev/ptmx` 设备可以通过使用代码 `open("/dev/ptmx", O_RDWR | O_NOCTTY) ` 打开，当我们执行该代码时，内核会通过以下函数调用链，分配一个 `tty_struct` 结构体：
 
 ```c
 ptmx_open (drivers/tty/pty.c)
