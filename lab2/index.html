@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://zjusec.gitee.io/syssec23-stu/lab2/">
+        <link rel="canonical" href="https://syssec24.github.io/lab2/">
       
       
         <link rel="prev" href="../lab1/">
@@ -17,7 +17,7 @@
         <link rel="next" href="../lab3/">
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.8">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.18">
     
     
       
@@ -25,10 +25,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.ded33207.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.26e3688c.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.a0c5b2b5.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ecc896b0.min.css">
       
       
 
@@ -178,13 +178,13 @@
     
     
       <div class="md-header__source">
-        <a href="https://gitee.com/zjusec/syssec23-stu" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/syssec24/syssec24.github.io" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
-    zjusec/syssec-stu
+    syssec24/syssec24.github.io
   </div>
 </a>
       </div>
@@ -223,13 +223,13 @@
   </label>
   
     <div class="md-nav__source">
-      <a href="https://gitee.com/zjusec/syssec23-stu" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/syssec24/syssec24.github.io" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
-    zjusec/syssec-stu
+    syssec24/syssec24.github.io
   </div>
 </a>
     </div>
@@ -752,6 +752,9 @@
                 
                   
 
+  
+  
+
 
 <h1 id="linux-rop">Linux内核漏洞攻防 - ROP攻击与防护</h1>
 <h2 id="1">1. 实验目的</h2>
@@ -1128,6 +1131,9 @@ gdb-multiarch<span class="w"> </span>vmlinux
 aarch64-linux-gnu-objdump<span class="w"> </span>--disassemble<span class="o">=</span>zjubof_write<span class="w"> </span>vmlinux<span class="w">  </span><span class="c1">#反汇编zjubof_write函数</span>
 </code></pre></div></td></tr></table></div>
 <p><strong>请注意内核每次启动的 KASLR 偏移值都不同，Task 2，3的利用代码要包含Task 1 的利用代码。</strong></p>
+<blockquote>
+<p>提示：1. 在编写PoC的过程中可能会遇到加入<code>system("/bin/sh")</code>导致其余printf无法输出的问题，所以可以先注释掉<code>system("/bin/sh")</code>；2. 虚拟机中出现的<code>can't access tty...</code>，不会干扰利用。</p>
+</blockquote>
 <h3 id="52-task2-return-address-root">5.2 Task2: 修改return address，获取 root 权限</h3>
 <p>在泄露了 stack canary 和 offset 后，我们就可以利用 buffer overflow write 漏洞覆盖掉栈上的 lr 值。在Task2 中，只需要覆盖 lr 使执行流跳转到 <code>first_level_gadget</code> （请注意跳转到该函数的哪一行），该 gadget 调用 <code>commit_creds(prepare_kernel_cred(0))</code> 提权，并将栈指针调整到 <code>zjubof_write</code> 函数栈帧的底部，与正常执行时的sp保持一致，以保证能正确从 <code>zjubof_write</code> 函数返回。请同学们通过画栈的变化图以及通过 gdb 追踪栈的变化，搞清楚为什么要调整栈指针。</p>
 <p>在获取 root 权限后，读取 <code>/root/flag.txt</code> 文件获取 flag。</p>
@@ -1255,10 +1261,10 @@ make<span class="w"> </span><span class="nv">CROSS_COMPILE</span><span class="o"
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.top"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.top"], "search": "../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.51198bba.min.js"></script>
+      <script src="../assets/javascripts/bundle.220ee61c.min.js"></script>
       
     
   </body>

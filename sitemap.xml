@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://zjusec.gitee.io/syssec23-stu/</loc>
-         <lastmod>2023-05-11</lastmod>
+         <loc>https://syssec24.github.io/</loc>
+         <lastmod>2024-05-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://zjusec.gitee.io/syssec23-stu/lab1/</loc>
-         <lastmod>2023-05-11</lastmod>
+         <loc>https://syssec24.github.io/lab1/</loc>
+         <lastmod>2024-05-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://zjusec.gitee.io/syssec23-stu/lab2/</loc>
-         <lastmod>2023-05-11</lastmod>
+         <loc>https://syssec24.github.io/lab2/</loc>
+         <lastmod>2024-05-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://zjusec.gitee.io/syssec23-stu/lab3/</loc>
-         <lastmod>2023-05-11</lastmod>
+         <loc>https://syssec24.github.io/lab3/</loc>
+         <lastmod>2024-05-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://zjusec.gitee.io/syssec23-stu/proj/</loc>
-         <lastmod>2023-05-11</lastmod>
+         <loc>https://syssec24.github.io/proj/</loc>
+         <lastmod>2024-05-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
