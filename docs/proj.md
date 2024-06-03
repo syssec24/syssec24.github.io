@@ -211,18 +211,112 @@ Arm在2019年发布的ARMv8.5硬件规范中首次提出了MTE，它用4个比�
 3. 将技术扩展到新的领域；
 4. 获得新的结果。
 
-中期（第3周）完成：1，2  
+中期（第3周）完成：1，2
 期末（第6周）完成：3，4
 
 参考文档：
 
-1. https://www.bilibili.com/video/BV19h4y1W7th/
+https://www.bilibili.com/video/BV19h4y1W7th/
+
+### 3.3 基于大模型的逻辑漏洞检测
+背景：逻辑漏洞危害严重，传统静态分析方法不能理解代码逻辑，难以实现逻辑漏洞的自动化检测。大模型具有代码逻辑理解能力，已有科研成果表明大模型具备实现代码逻辑理解与逻辑漏洞自动化检测的能力（如针对智能合约代码的GPTScan）。
+描述：本项目旨在使同学们结合传统分析与大模型，针对现有开源项目代码上的各类逻辑类漏洞，开展自动化检测技术的研究，弥补技术空白。针对权限校验、身份验证、支付逻辑3类逻辑问题实现自动化漏洞检测。
+里程碑：收集开源逻辑漏洞数据集、大模型训练与评估、系统分析；
+参考文档：
+GPTScan: Detecting Logic Vulnerabilities in Smart Contracts by Combining GPT with Program Analysis
+https://mp.weixin.qq.com/s/kZfsa7oi_e9rTTjSQR7mXg
+LineVul: A Transformer-based Line-Level Vulnerability Prediction
+
+### 3.4 基于人工智能的漏洞代码检测定位
+背景：人工开展代码漏洞挖掘费时费力，传统静态漏洞检测能够实现自动化识别疑似漏洞点，但误报率较高且难以检测复杂的上下文漏洞。基于人工智能的漏洞代码检测定位具有理解代码上下文相关性并对特征进行多层概括和抽象的能力，通过模型的自身泛化能力自动检测代码中相似的漏洞，可代替人工开展疑似漏洞确认，有效提高检测效率。
+描述：本项目旨在使同学们了解漏洞挖掘的基本知识，学习训练深度学习模型进行漏洞检测任务。更进一步尝试通过多种模型优化策略提升模型定位漏洞的效果，比如进行更细粒度的程序切片、使用包含更多语义信息的代码标识方法、提高模型识别漏洞根因位置的能力等。
+里程碑：收集漏洞标注数据集、模型训练与评估、系统分析
+参考文档：
+VulChecker: Graph-based Vulnerability Localization in Source Code
+https://github.com/ymirsky/VulChecker
+Devign: Effective vulnerability identification by learning comprehensive program semantics via graph neural networks
 
 
-## 4. MCU rehosting project
+## 4. MCU rehosting 相关Project
+
+### 4.1 基于emulater的外设支持
+背景：由于硬件和固件之前的紧密耦合，以及缺乏外设模型支持，微控制器（MCU）的固件模拟具有一定挑战性。这也极大的阻碍了动态分析工具在固件分析中的应用，影响了固件漏洞挖掘和其他安全分析的进展。因此，如何构建外设模型，模拟具有位置外设的固件是一个重要的研究问题。
+描述：本项目旨在使同学们深入理解嵌入式系统安全，掌握MCU的固件模拟及其外设支持。
+里程碑：1. 根据参考文档中的论文和其他相关论文，总结出模拟外设需要的条件，当前外设模拟的困难和不同方法的优缺点等重要内容 ，写一份简单但要点内容齐全的综述 2. 根据所完成综述，复现一篇/多篇论文，并提出更优的方法运用其中
+中期完成：里程碑1
+期末完成：里程碑2
+参考文档：
+1. https://dl.acm.org/doi/pdf/10.1145/3433210.3453093
+2. https://dl.acm.org/doi/pdf/10.1145/3423167
+3. https://www.usenix.org/system/files/sec20-feng.pdf
+4. https://www.usenix.org/system/files/sec21-zhou.pdf
+5. https://dl.acm.org/doi/pdf/10.1145/3545948.3545957
+
+### 4.2 支持多种处理器架构的MCU rehosting框架
+背景：大多数rehosting框架只支持ARM或x86等常见架构，但在一些特定场景下，有许多非常规架构的固件。例如智能互联网汽车的场景中，有C166，RH850，V850，SH-2A等汽车固件中的特定架构。如何针对这些架构的MCU进行rehosting具有挑战性，也同时是一项研究重点。
+描述：本项目旨在使同学们深入理解不同架构的MCU如何rehosting，学习如何构建architecture- agnostic的MCU rehosting的框架，并在此基础上对固件进行动态分析，例如fuzzing
+里程碑：1. 构建支持多种处理器架构的MCU rehosting框架 2. 在该框架上对固件进行动态分析如fuzzing
+中期完成：里程碑1
+期末完成：里程碑2
+参考文档：
+1. https://dl.acm.org/doi/pdf/10.1145/3433210.3453093
+2. https://dl.acm.org/doi/pdf/10.1145/3423167
+3. https://arxiv.org/pdf/2208.03528
+4. https://arxiv.org/pdf/2301.13346
 
 
-## 5. Groups
+## 5. Android系统相关Project
+
+### 5.1 Android应用第三方库检测
+
+背景: 第三方库（TPL）给Android应用程序提供了可重用的功能，极大的促进了Android应用的开发，已经成为移动生态系统中必不可少的组成部分。然而，TPL的广泛使用也会引入相关安全问题，应用程序中TPL组件信息并非是透明的，甚至开发人员可能也不知道使用了哪些TPL，检测Android应用中的TPL对于恶意软件检测、隐私泄露检测等下游任务至关重要。
+
+描述: 本项目旨在使同学们入门Android系统安全领域，了解Android应用的体系结构，同时深入探究Android应用第三方库的检测方法。
+
+里程碑:
+
+1. 阅读参考文档并收集更多相关资料和文献，总结Android第三方库检测方法及其优缺点（综述）；
+2. 复现近期针对Android第三方库检测的工作（复现）；
+3. 提出具有混淆弹性，能识别动态加载的TPL的检测思路 （思路）。
+
+中期（第3周）完成：1 
+
+期末（第6周）完成：2，3 
+
+参考文档:
+
+1. Zhan X, Fan L, Liu T, et al. Automated third-party library detection for android applications: Are we there yet?[C]//Proceedings of the 35th IEEE/ACM International Conference on Automated Software Engineering. 2020: 919-930.
+2. Zhan X, Fan L, Chen S, et al. Atvhunter: Reliable version detection of third-party libraries for vulnerability identification in android applications[C]//2021 IEEE/ACM 43rd International Conference on Software Engineering (ICSE). IEEE, 2021: 1695-1707.
+3. Wu Y, Sun C, Zeng D, et al. LibScan: towards more precise third-party library identification for android applications[C]//Proceedings of the 32nd USENIX Conference on Security Symposium. 2023: 3385-3402.
+
+### 5.2 Android应用逃逸技术检测
+
+背景:
+
+随着 Android 应用程序使用量的持续增长，确保Android应用的安全性至关重要，相关研究通过动静态分析的方法检测Android恶意应用或隐私泄漏等。然而，越来越多的恶意应用程序采用逃逸技术（反分析技术）来逃避安全分析。
+
+描述:
+
+本项目旨在使同学们了解Android应用分析技术，同时深入探究Android应用的逃逸技术。
+
+里程碑:
+
+1. 阅读参考文档并收集更多相关资料和文献，对Android应用使用的逃逸技术及其实现方法进行收集和分类总结；
+2. （可选）复现检测Android应用逃逸技术的工作（复现）；
+3. （可选）实现一个可以检测部分Android应用逃逸技术的工具（实现）。
+
+中期（第3周）完成：1 
+
+期末（第6周）完成：2或3 
+
+参考文档:
+
+1. Xue L, Zhou H, Luo X, et al. Happer: Unpacking android apps via a hardware-assisted approach[C]//2021 IEEE Symposium on Security and Privacy (SP). IEEE, 2021: 1641-1658.
+2. Kondracki B, Azad B A, Miramirkhani N, et al. The droid is in the details: Environment-aware evasion of android sandboxes[C]//Proceedings of the 29th Network and Distributed System Security Symposium (NDSS). 2022.
+3. Afonso V, Kalysch A, Müller T, et al. Lumus: Dynamically uncovering evasive Android applications[C]//Information Security: 21st International Conference, ISC 2018, Guildford, UK, September 9–12, 2018, Proceedings 21. Springer International Publishing, 2018: 47-66.
+4. Hammad M, Garcia J, Malek S. A large-scale empirical study on the effects of code obfuscations on android apps and anti-malware products[C]//Proceedings of the 40th international conference on software engineering. 2018: 421-431.
+
+## 6. Groups
 
 1.1   
 1.2   
@@ -230,6 +324,15 @@ Arm在2019年发布的ARMv8.5硬件规范中首次提出了MTE，它用4个比�
 2.1   
 2.2  
 2.3    
-2.4   
+2.4  
+2.5 
 3.1   
 3.2 
+3.3
+3.4
+4.1
+4.2
+5.1
+5.2
+
+
