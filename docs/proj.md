@@ -228,8 +228,10 @@ https://www.bilibili.com/video/BV19h4y1W7th/
 里程碑：收集开源逻辑漏洞数据集、大模型训练与评估、系统分析；
 
 参考文档：
+
 GPTScan: Detecting Logic Vulnerabilities in Smart Contracts by Combining GPT with Program Analysis
 https://mp.weixin.qq.com/s/kZfsa7oi_e9rTTjSQR7mXg
+
 LineVul: A Transformer-based Line-Level Vulnerability Prediction
 
 ### 3.4 基于人工智能的漏洞代码检测定位
@@ -242,8 +244,10 @@ LineVul: A Transformer-based Line-Level Vulnerability Prediction
 里程碑：收集漏洞标注数据集、模型训练与评估、系统分析
 
 参考文档：
+
 VulChecker: Graph-based Vulnerability Localization in Source Code
 https://github.com/ymirsky/VulChecker
+
 Devign: Effective vulnerability identification by learning comprehensive program semantics via graph neural networks
 
 
@@ -260,10 +264,13 @@ Devign: Effective vulnerability identification by learning comprehensive program
 里程碑：
 1. 根据参考文档中的论文和其他相关论文，总结出模拟外设需要的条件，当前外设模拟的困难和不同方法的优缺点等重要内容 ，写一份简单但要点内容齐全的综述 
 2. 根据所完成综述，复现一篇/多篇论文，并提出更优的方法运用其中
+
 中期完成：里程碑1
+
 期末完成：里程碑2
 
 参考文档：
+
 1. https://dl.acm.org/doi/pdf/10.1145/3433210.3453093
 2. https://dl.acm.org/doi/pdf/10.1145/3423167
 3. https://www.usenix.org/system/files/sec20-feng.pdf
@@ -279,10 +286,13 @@ Devign: Effective vulnerability identification by learning comprehensive program
 里程碑：
 1. 构建支持多种处理器架构的MCU rehosting框架 
 2. 在该框架上对固件进行动态分析如fuzzing
+
 中期完成：里程碑1
+
 期末完成：里程碑2
 
 参考文档：
+
 1. https://dl.acm.org/doi/pdf/10.1145/3433210.3453093
 2. https://dl.acm.org/doi/pdf/10.1145/3423167
 3. https://arxiv.org/pdf/2208.03528
@@ -354,13 +364,13 @@ Devign: Effective vulnerability identification by learning comprehensive program
 
 3.1   
 3.2 
-3.3
-3.4
+3.3 
+3.4 
 
-4.1
+4.1 
 4.2
 
-5.1
+5.1 
 5.2
 
 
